@@ -1,0 +1,16 @@
+%h1 Welcome to Jicho
+%h4 Jicho allows users to submit images to the Google Cloud Vision API and get back a list of tags.
+%form(method="post" enctype='multipart/form-data')
+  %input(type='file' name='image_file')
+  %br
+  %input(type='submit' value='Submit for Analysis')
+
+- if (defined? labels) && labels
+  %hr
+  %ul{:id => "test"}
+    - labels.each do |v|
+      %li #{v[:label]} - (#{v[:score]})
+
+
+
+

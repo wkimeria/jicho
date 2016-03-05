@@ -1,0 +1,85 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.4.0)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
+    backports (3.3.5)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.2)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
+    extlib (0.9.16)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
+    google-api-client (0.7.1)
+      addressable (>= 2.3.2)
+      autoparse (>= 0.3.3)
+      extlib (>= 0.9.15)
+      faraday (>= 0.9.0)
+      jwt (>= 0.1.5)
+      launchy (>= 2.1.1)
+      multi_json (>= 1.0.0)
+      retriable (>= 1.4)
+      signet (>= 0.5.0)
+      uuidtools (>= 2.1.0)
+    google_cloud_vision (0.1.0)
+    haml (4.0.3)
+      tilt
+    jwt (1.5.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    multi_json (1.7.6)
+    multipart-post (2.0.0)
+    puma (2.0.1)
+      rack (>= 1.1, < 2.0)
+    rack (1.5.2)
+    rack-coffee (1.0.0)
+      coffee-script
+      rack
+    rack-protection (1.5.0)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    retriable (2.1.0)
+    sass (3.2.9)
+    signet (0.5.1)
+      addressable (>= 2.2.3)
+      faraday (>= 0.9.0.rc5)
+      jwt (>= 0.1.5)
+      multi_json (>= 1.0.0)
+    sinatra (1.4.3)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    sinatra-contrib (1.4.1)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (~> 1.3)
+    sinatra-reloader (1.0)
+      sinatra-contrib
+    tilt (1.4.1)
+    uuidtools (2.1.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  google-api-client
+  google_cloud_vision
+  haml
+  puma
+  rack-coffee
+  sass
+  sinatra
+  sinatra-reloader
+
+BUNDLED WITH
+   1.11.2
