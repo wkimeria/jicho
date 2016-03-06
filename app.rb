@@ -26,12 +26,13 @@ post "/" do
                                            ]).response
 
     if label_response['responses']
-      labels = []
+      @labels = []
+      @scores = []
       label_response['responses'][0]['labelAnnotations'].each do |i|
-        label = {:label => i['description'], :score => i['score']}
-        labels << label
+        @labels << i['description']
+        @scores << i['score']
       end
-      haml(:index, :locals => {:labels => labels})
+      haml(:index, :locals => {:labels => @labels, :scores => @scores})
     end
   else
     # Throw error
