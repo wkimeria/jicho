@@ -1,10 +1,9 @@
 Bundler.require :web
 Bundler.require :development if development?
 
-require './google_cloud_vision.rb'
-#require 'google_cloud_vision'
+require 'google_cloud_vision'
 require "sinatra/config_file"
-config_file 'config/app.yml'
+config_file 'config/config.yml'
 
 get '/style.css' do
   scss :style
@@ -23,7 +22,7 @@ post "/" do
     tmp_path = params['image_file'][:tempfile].to_path.to_s
     label_response = GoogleCloudVision::Classifier.new(settings.api_key,
                                            [
-                                               {image: tmp_path, detection: 'LABEL_DETECTION', maxResults: 10}
+                                               {image: tmp_path, detection: 'LABEL_DETECTION', max_results: 10}
                                            ]).response
 
     if label_response['responses']
