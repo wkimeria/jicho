@@ -18,9 +18,7 @@ class JichoApp < Sinatra::Base
   end
 
   get '/' do
-    @labels = []
-    @scores = []
-    return_response(@labels, @scores)
+    return_response
   end
 
   post "/" do
@@ -29,13 +27,13 @@ class JichoApp < Sinatra::Base
       tmp_path = params['image_file'][:tempfile].to_path.to_s
 
       begin
-        @labels, @scores =  get_labels_and_scores(tmp_path)
-        if @labels && @scores
+        labels, scores =  get_labels_and_scores(tmp_path)
+        if labels && scores
           $submission_count = $submission_count + 1
-          return_response(@labels, @scores)
+          return_response(labels, scores)
         end
       rescue => e
-        return_response(@labels, @scores, "An error occured fetching the labels for image")
+        return_response([], [], "An error occured fetching the labels for image")
       end
     else
 
@@ -46,7 +44,7 @@ class JichoApp < Sinatra::Base
     haml :'404'
   end
 
-  def return_response(labels, scores, error_message = nil)
+  def return_response(labels = [], scores = [], error_message = nil)
     haml(:index, :locals => {:labels => labels,
                              :scores => scores,
                              :submission_count => $submission_count,

@@ -1,7 +1,14 @@
+html {
+  display: table;
+  margin: auto;
+}
+
 body{
   width: 80%;
   padding: 50px;
   background-color: #E5E4E2;
+  display: table-cell;
+  vertical-align: middle;
 }
 header {
   background-color: #C0C0C0;
@@ -18,8 +25,8 @@ paragraph{
 div{
   width: 80%;
   text-align: left;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 .fileUpload {
   position: relative;
