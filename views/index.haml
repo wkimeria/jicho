@@ -7,7 +7,6 @@
   (function($){ // encapsulate jQuery
   	$(function () {
 
-
   	  var categories =  #{@labels};
   	  var data = #{@scores};
 
@@ -65,16 +64,21 @@
       });
   });
   })(jQuery);
-  jQuery(document).ready(function(){jQuery("#view-menu").click(function(e){jQuery("#wrap").toggleClass("toggled")}),jQuery("#sidebar-close").click(function(e){jQuery("#wrap").removeClass("toggled")}),jQuery(document).keydown(function(e){var t;"INPUT"!=e.target.tagName&&(39==e.keyCode?t=document.getElementById("next-example"):37==e.keyCode&&(t=document.getElementById("previous-example")),t&&(location.href=t.href))}),jQuery("#switcher-selector").bind("change",function(){var e=jQuery(this).val();return e&&(window.location=e),!1})});
+  jQuery(document).ready(function(){
+
+  jQuery('#imagesubmit').change(function() {
+    jQuery('#submitform').submit();
+    jQuery("body").css("cursor", "progress");
+  });
+
+  jQuery("#view-menu").click(function(e){jQuery("#wrap").toggleClass("toggled")}),jQuery("#sidebar-close").click(function(e){jQuery("#wrap").removeClass("toggled")}),jQuery(document).keydown(function(e){var t;"INPUT"!=e.target.tagName&&(39==e.keyCode?t=document.getElementById("next-example"):37==e.keyCode&&(t=document.getElementById("previous-example")),t&&(location.href=t.href))}),jQuery("#switcher-selector").bind("change",function(){var e=jQuery(this).val();return e&&(window.location=e),!1})});
 
 %h1 Welcome to Jicho
 %h4 Jicho allows users to submit images to the Google Cloud Vision API and get back a list of tags.
-%form(method="post" enctype='multipart/form-data')
-  %input(type='file' name='image_file')
+%form(id = 'submitform' method="post" enctype='multipart/form-data')
+  %input(id = 'imagesubmit' type='file' name='image_file' accept = '.jpg,.jpeg,.png,.gif,.tif,.tiff' autofocus = 'autofocus')
   %br
-  %input(type='submit' value='Submit for Analysis')
-
-- if (defined? labels) && labels
+- if (defined? labels) && labels && labels.length > 0
   %hr
   %div{:id => "container"}
 

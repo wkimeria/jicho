@@ -10,7 +10,9 @@ get '/style.css' do
 end
 
 get '/' do
-  haml :index
+  @labels = []
+  @scores = []
+  haml(:index, :locals => {:labels => @labels, :scores => @scores})
 end
 
 # Handle POST-request (Receive and save the uploaded file) or fetch image at specified urp
