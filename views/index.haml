@@ -71,10 +71,25 @@
     jQuery("body").css("cursor", "progress");
   });
 
+  if(#{@@submission_count} >= #{@@submission_limit}){
+    jQuery('#imagesubmit').attr('disabled', 'disabled');
+  }
+
   jQuery("#view-menu").click(function(e){jQuery("#wrap").toggleClass("toggled")}),jQuery("#sidebar-close").click(function(e){jQuery("#wrap").removeClass("toggled")}),jQuery(document).keydown(function(e){var t;"INPUT"!=e.target.tagName&&(39==e.keyCode?t=document.getElementById("next-example"):37==e.keyCode&&(t=document.getElementById("previous-example")),t&&(location.href=t.href))}),jQuery("#switcher-selector").bind("change",function(){var e=jQuery(this).val();return e&&(window.location=e),!1})});
 
 %h1 Welcome to Jicho
 %h4 Jicho allows users to submit images to the Google Cloud Vision API and get back a list of tags.
+
+%h5 This app uses a test api key and since there is a nominal charge associated with it only a certain number of images per day can be submitted. The number of image submissions left is displayed below. If that limit has been reached, then this form is disabled and no more submissions can be performed until the next time period
+
+- if (defined? submission_count) && submission_count
+  %h5
+    Image submssions so far
+    %b #{submission_count}
+    out of
+    %b #{submission_limit}
+
+
 %form(id = 'submitform' method="post" enctype='multipart/form-data')
   %input(id = 'imagesubmit' type='file' name='image_file' accept = '.jpg,.jpeg,.png,.gif,.tif,.tiff' autofocus = 'autofocus')
   %br

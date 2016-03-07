@@ -5,14 +5,24 @@ require 'google_cloud_vision'
 require "sinatra/config_file"
 config_file 'config/config.yml'
 
+#@submission_count = 0
+#@submission_limit = 100
+
 get '/style.css' do
   scss :style
 end
 
 get '/' do
+
+  @@submission_count ||= 0
+  @@submission_limit ||= 5
+
   @labels = []
   @scores = []
-  haml(:index, :locals => {:labels => @labels, :scores => @scores})
+  haml(:index, :locals => {:labels => @labels,
+                           :scores => @scores,
+                           :submission_count => @@submission_count,
+                           :submission_limit => @@submission_limit})
 end
 
 # Handle POST-request (Receive and save the uploaded file) or fetch image at specified urp
@@ -34,7 +44,13 @@ post "/" do
         @labels << i['description']
         @scores << i['score']
       end
-      haml(:index, :locals => {:labels => @labels, :scores => @scores})
+
+      @@submission_count = @@submission_count + 1
+
+      haml(:index, :locals => {:labels => @labels,
+                               :scores => @scores,
+                               :submission_count => @@submission_count,
+                               :submission_limit => @@submission_limit})
     end
   else
     # Throw error
