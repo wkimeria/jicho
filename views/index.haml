@@ -71,7 +71,7 @@
     jQuery("body").css("cursor", "progress");
   });
 
-  if(#{$submission_count} >= #{@submission_limit}){
+  if(#{$submission_count} >= #{settings.submission_limit}){
     jQuery('#imagesubmit').attr('disabled', 'disabled');
   }
 
@@ -87,7 +87,7 @@
     Image submssions so far
     %b #{submission_count}
     out of
-    %b #{submission_limit}
+    %b #{settings.submission_limit}
 
 
 %form(id = 'submitform' method="post" enctype='multipart/form-data')
@@ -96,6 +96,8 @@
 - if (defined? labels) && labels && labels.length > 0
   %hr
   %div{:id => "container"}
+- if (defined? error_message) && !error_message.nil?
+  %h4 #{error_message}
 
 
 

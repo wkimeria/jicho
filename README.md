@@ -18,9 +18,7 @@ Clone this directory and change into it. Run `bundle` to install all dependencie
 
 ### Running locally
 
-Since Sinatra Starter is configured to deploy on Heroku, a `Procfile` is included.
-
-    web: bundle exec ruby app.rb -p $PORT
+    rackup
 
 Use `foreman start -p XXXX` on your port of choice. For example:
 
