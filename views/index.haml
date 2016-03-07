@@ -90,7 +90,7 @@
   %hr
   %div{:id => "container"}
 - if (defined? error_message) && !error_message.nil?
-  %paragraph #{error_message}
+  %paragraph(class = 'error') #{error_message}
 
 
 

@@ -1,4 +1,6 @@
 body{
+  width: 80%;
+  padding: 50px;
   background-color: #E5E4E2;
 }
 header {
@@ -9,12 +11,12 @@ header {
 }
 
 paragraph{
-  width: 1200px;
+  width: 80%;
   text-align: left;
 }
 
 div{
-  width: 1200px;
+  width: 80%;
   text-align: left;
   padding-right: 40px;
   padding-left: 40px;
@@ -34,4 +36,8 @@ div{
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+}
+
+.error {
+  color:red;
 }
