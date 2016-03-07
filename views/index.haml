@@ -12,7 +12,8 @@
 
       $('#container').highcharts({
           chart: {
-              type: 'bar'
+              type: 'bar',
+              backgroundColor: '#C0C0C0'
           },
           title: {
               text: 'Image Labels'
@@ -43,17 +44,6 @@
                   }
               }
           },
-          legend: {
-              layout: 'vertical',
-              align: 'right',
-              verticalAlign: 'top',
-              x: -40,
-              y: 80,
-              floating: true,
-              borderWidth: 1,
-              backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-              shadow: true
-          },
           credits: {
               enabled: false
           },
@@ -80,26 +70,27 @@
 %header
   %h1
     Jicho
-%h4 Jicho allows users to submit images to the Google Cloud Vision API and get back a list of tags.
 
-%h5 This app uses a test api key and since there is a nominal charge associated with it only a certain number of images per day can be submitted. The number of image submissions left is displayed below. If that limit has been reached, then this form is disabled and no more submissions can be performed until the next time period
-
+%paragraph
+  Jicho allows users to submit images to the Google Cloud Vision API and get back a list of tags. This app uses a test api key and since there is a nominal charge associated with it only a certain number of images per day can be submitted. The number of image submissions left is displayed below. If that limit has been reached, then this form is disabled and no more submissions can be performed until the next time period
+%br
 - if (defined? submission_count) && submission_count
-  %h5
+  %paragraph
+    %br
     Image submssions so far
     %b #{submission_count}
     out of
     %b #{settings.submission_limit}
-
-
+    %br
 %form(id = 'submitform' method="post" enctype='multipart/form-data')
-  %input(id = 'imagesubmit' type='file' name='image_file' accept = '.jpg,.jpeg,.png,.gif,.tif,.tiff' autofocus = 'autofocus')
+  %div(class = 'fileUpload btn btn-primary')
+  %input(id = 'imagesubmit' class = 'upload' type='file' name='image_file' accept = '.jpg,.jpeg,.png,.gif,.tif,.tiff' autofocus = 'autofocus')
   %br
 - if (defined? labels) && labels && labels.length > 0
   %hr
   %div{:id => "container"}
 - if (defined? error_message) && !error_message.nil?
-  %h4 #{error_message}
+  %paragraph #{error_message}
 
 
 
